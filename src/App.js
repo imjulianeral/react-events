@@ -50,7 +50,9 @@ export default class App extends Component {
             categories={ this.state.categories }
             getEvents={ this.getEvents }
           />
-          <Events/>
+          <Events
+            events={ this.state.events }
+          />
         </div>
       </div>
     )
