@@ -1,60 +1,26 @@
-import React, { Component } from 'react'
-import Header from './components/Header';
-import Form from './components/Form';
-import Events from './components/Events';
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
 
-export default class App extends Component {
-  state = {
-    categories: [],
-    events: []
-  }
-
-  token = 'VPQUC3DNG3L3SJRUP3C4';
-  
-  componentDidMount() {
-    this.getCategories();
-  }
-
-  getCategories = async () => {
-    let url = `https://www.eventbriteapi.com/v3/categories/?token=${this.token}&locale=es_ES`;
-
-    await fetch(url)
-            .then(resp => { return resp.json() })
-            .then(data => {
-              this.setState({
-                categories: data.categories
-              });
-            })
-            .catch(err => console.error(err));
-  }
-
-  getEvents = async query => {
-    let url = `https://www.eventbriteapi.com/v3/events/search/?q=${query.name}&sort_by=date&categories=${query.category}&token=${this.token}`;
-
-    await fetch(url)
-            .then(resp => { return resp.json() })
-            .then(data => {
-              this.setState({
-                events: data.events
-              });
-            })
-            .catch(err => console.error(err));
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <Header/>
-        <div className="uk-container">
-          <Form 
-            categories={ this.state.categories }
-            getEvents={ this.getEvents }
-          />
-          <Events
-            events={ this.state.events }
-          />
-        </div>
-      </div>
-    )
-  }
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
 }
+
+export default App;
